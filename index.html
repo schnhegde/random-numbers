@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Site</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0 }
+
+    div { position: fixed; width: 50%; height: 50%;
+    border: solid black 1px; }
+
+    #TL { top: 0;   left: 0; }
+    #TR { top: 0;   left: 50%; }
+    #BL { top: 50%; left: 0; }
+    #BR { top: 50%; left: 50%; }
+
+    table{font-size: 13px;}
+    td {padding: 3px}
+  </style>
+</head>
+<body>
+    <div id="TL">
+        <h3>Random Numbers:</h3>
+        <table id = "shuffled"></table>
+    </div>
+    <div id="TR">
+        <h3>Total for Index:</h3>
+        <table id = "total"></table>
+    </div>
+
+    <div id="BL"></div>
+    <div id="BR"></div>
+
+    <script type="text/javascript">
+        var obj = <%- JSON.stringify(shuffled) %>
+        var obj1 = <%- JSON.stringify(count) %>
+        var shuffledObj = document.getElementById("shuffled");
+        var totalObj = document.getElementById("total");
+
+        for (var i = 0; i < 10; i++) {
+            var row = document.createElement('tr');
+            for (j = 0; j < 10; j++) {
+                var cell = document.createElement('td');
+                cell.innerHTML = obj[i + (j * 10)];
+                row.appendChild(cell);
+            }
+            shuffledObj.appendChild(row);
+        }
+
+
+        for (var i = 0; i < 10; i++) {
+            var row = document.createElement('tr');
+            for (j = 0; j < 10; j++) {
+                if (obj[i + (j * 10)]) {
+                    var cell = document.createElement('td');
+                    cell.innerHTML = obj1[i + (j * 10)];
+                    row.appendChild(cell);
+                }
+            }
+            totalObj.appendChild(row);
+        }
+    </script>
+
+</body>
+</html>
