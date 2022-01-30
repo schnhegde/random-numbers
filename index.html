@@ -28,14 +28,19 @@
         <table id = "total"></table>
     </div>
 
-    <div id="BL"></div>
+    <div id="BL">
+        <h3>Sorted Random Numbers:</h3>
+        <table id = "sorted"></table>
+    </div>
     <div id="BR"></div>
 
     <script type="text/javascript">
         var obj = <%- JSON.stringify(shuffled) %>
         var obj1 = <%- JSON.stringify(count) %>
+        var obj2 = <%- JSON.stringify(sorted) %>
         var shuffledObj = document.getElementById("shuffled");
         var totalObj = document.getElementById("total");
+        var sortedObj = document.getElementById("sorted");
 
         for (var i = 0; i < 10; i++) {
             var row = document.createElement('tr');
@@ -51,13 +56,25 @@
         for (var i = 0; i < 10; i++) {
             var row = document.createElement('tr');
             for (j = 0; j < 10; j++) {
-                if (obj[i + (j * 10)]) {
+                if (obj1[i + (j * 10)]) {
                     var cell = document.createElement('td');
                     cell.innerHTML = obj1[i + (j * 10)];
                     row.appendChild(cell);
                 }
             }
             totalObj.appendChild(row);
+        }
+
+        for (var i = 0; i < 10; i++) {
+            var row = document.createElement('tr');
+            for (j = 0; j < 10; j++) {
+                if (obj2[i + (j * 10)]) {
+                    var cell = document.createElement('td');
+                    cell.innerHTML = obj2[i + (j * 10)];
+                    row.appendChild(cell);
+                }
+            }
+            sortedObj.appendChild(row);
         }
     </script>
 

@@ -176,7 +176,21 @@ generator.getRandomIndexes = function(randomArray, repeatIndexWeight, removeNumb
     finalObj.count[i] = (keyInt < 10 ? '0' + keyInt : keyInt) + " - " + (finalCount[keys[i]] > 0 ? finalCount[keys[i]] : '  ');
   }
 
-  console.log(finalObj.count);
+  var combinedList = [];
+  for (var i = 0; i < 100; i++) {
+    combinedList.push({'index': finalIndexes[i], 'number': randomArray[i]});
+  }
+
+  combinedList = combinedList.sort((a, b) => {return (a.index < b.index) ? -1 : 0});
+  
+  finalObj.sorted = [];
+
+  for (var i = 0; i < 100; i++) {
+    finalObj.sorted[i] = (combinedList[i].index < 10 ? '0' + combinedList[i].index : combinedList[i].index)
+      + ' - ' + (combinedList[i].number < 0 ? '' : combinedList[i].number); 
+  }
+
+
   return finalObj;
 
 }
